@@ -1,0 +1,33 @@
+{
+    "name": "PresentationControls",
+    "maps": [
+        {
+            "name": "ViewTransitions",
+            "id": "8242941c-9bc8-4346-b2c2-458a535a7c96",
+            "actions": [
+                {
+                    "name": "NextView",
+                    "type": "Button",
+                    "id": "e688c320-75c3-4f36-b0af-45d212a269df",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b551af09-4a9f-4315-93ff-964e8402240d",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextView",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
