@@ -1,0 +1,63 @@
+{
+    "name": "ApplicationControls",
+    "maps": [
+        {
+            "name": "General",
+            "id": "82e5bdd7-8fbc-4c2d-a4a9-9288ac7992c0",
+            "actions": [
+                {
+                    "name": "ExitApplication",
+                    "type": "Button",
+                    "id": "4479ca73-01fd-4bc8-939e-4a02dedb90c5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ReloadActiveScene",
+                    "type": "Button",
+                    "id": "31a78079-0430-43bf-b4be-c14f1f4b76ec",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2cfbd0fc-de67-443d-ab65-c59de5892fea",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ExitApplication",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5f7aaa96-b9ea-4f63-b553-b59f462db5f0",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReloadActiveScene",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8e7931cf-ab37-49d0-a78b-e2b70789478a",
+                    "path": "<HID::Bensussen Deutsch & Associates,Inc.(BDA) Core (Plus) Wired Controller>/button14",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReloadActiveScene",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

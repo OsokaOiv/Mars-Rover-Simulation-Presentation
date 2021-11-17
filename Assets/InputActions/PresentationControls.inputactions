@@ -1,0 +1,74 @@
+{
+    "name": "PresentationControls",
+    "maps": [
+        {
+            "name": "ViewTransitions",
+            "id": "8242941c-9bc8-4346-b2c2-458a535a7c96",
+            "actions": [
+                {
+                    "name": "NextView",
+                    "type": "Button",
+                    "id": "e688c320-75c3-4f36-b0af-45d212a269df",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "PreviousView",
+                    "type": "Button",
+                    "id": "af9f9297-9161-47eb-992d-658781c48a0d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b551af09-4a9f-4315-93ff-964e8402240d",
+                    "path": "<HID::Bensussen Deutsch & Associates,Inc.(BDA) Core (Plus) Wired Controller>/button3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextView",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "71b320bc-6b55-41f9-af83-da0423999704",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextView",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e6d2d4e7-eb37-46d7-9345-a9c54ec1870a",
+                    "path": "<HID::Bensussen Deutsch & Associates,Inc.(BDA) Core (Plus) Wired Controller>/button2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PreviousView",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4e99397b-5eba-4219-a9d8-40a4b2abe05f",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PreviousView",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
