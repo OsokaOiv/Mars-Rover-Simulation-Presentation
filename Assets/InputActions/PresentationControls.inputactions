@@ -68,6 +68,44 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "LagDemo",
+            "id": "74c1fad9-9e02-4aae-806a-8c625459eb99",
+            "actions": [
+                {
+                    "name": "ForwardWithLag",
+                    "type": "Button",
+                    "id": "5d768e6e-7477-42c7-8545-1618e4df1c6a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "76599040-8283-47ba-bac1-00fc8b62e8d5",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ForwardWithLag",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "df256120-b1fc-4c52-a088-50d060681b01",
+                    "path": "<Joystick>/stick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ForwardWithLag",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

@@ -3,7 +3,7 @@ using UnityEngine; // Bibliothek mit vorgefertigten Methoden
 
 public class MarsPathfinderRover : MonoBehaviour {
     #region Attribute
-    public int TimeMultiplier = 100; // Zeitmultiplikator
+    public int TimeMultiplier = 1000; // Zeitmultiplikator
     [SerializeField] private LayerMask GroundLayer;
     [SerializeField] private string GroundName;
     private const float MovementSpeed = .0067f; // 0,67 cm/s
@@ -11,7 +11,7 @@ public class MarsPathfinderRover : MonoBehaviour {
     private const float RoverDiskRadius = 1f; // 1 m
     private const float ScanningTime = 120; // 120 s
     private const float RoverHeightAboveGround = .05f;
-    private const float MaxTurnAngle = 1;
+    private const float MaxTurnAngle = 2;
     private const float RotationSpeed = .2f;
     private float DistanceToDrive = 0;
     private int Hazards = 0; // Anzahl Hindernisse im Sichtfeld

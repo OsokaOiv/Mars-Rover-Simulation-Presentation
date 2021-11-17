@@ -81,6 +81,44 @@ public class @PresentationControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""LagDemo"",
+            ""id"": ""74c1fad9-9e02-4aae-806a-8c625459eb99"",
+            ""actions"": [
+                {
+                    ""name"": ""ForwardWithLag"",
+                    ""type"": ""Button"",
+                    ""id"": ""5d768e6e-7477-42c7-8545-1618e4df1c6a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""76599040-8283-47ba-bac1-00fc8b62e8d5"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ForwardWithLag"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""df256120-b1fc-4c52-a088-50d060681b01"",
+                    ""path"": ""<Joystick>/stick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ForwardWithLag"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -89,6 +127,9 @@ public class @PresentationControls : IInputActionCollection, IDisposable
         m_ViewTransitions = asset.FindActionMap("ViewTransitions", throwIfNotFound: true);
         m_ViewTransitions_NextView = m_ViewTransitions.FindAction("NextView", throwIfNotFound: true);
         m_ViewTransitions_PreviousView = m_ViewTransitions.FindAction("PreviousView", throwIfNotFound: true);
+        // LagDemo
+        m_LagDemo = asset.FindActionMap("LagDemo", throwIfNotFound: true);
+        m_LagDemo_ForwardWithLag = m_LagDemo.FindAction("ForwardWithLag", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -175,9 +216,46 @@ public class @PresentationControls : IInputActionCollection, IDisposable
         }
     }
     public ViewTransitionsActions @ViewTransitions => new ViewTransitionsActions(this);
+
+    // LagDemo
+    private readonly InputActionMap m_LagDemo;
+    private ILagDemoActions m_LagDemoActionsCallbackInterface;
+    private readonly InputAction m_LagDemo_ForwardWithLag;
+    public struct LagDemoActions
+    {
+        private @PresentationControls m_Wrapper;
+        public LagDemoActions(@PresentationControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ForwardWithLag => m_Wrapper.m_LagDemo_ForwardWithLag;
+        public InputActionMap Get() { return m_Wrapper.m_LagDemo; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(LagDemoActions set) { return set.Get(); }
+        public void SetCallbacks(ILagDemoActions instance)
+        {
+            if (m_Wrapper.m_LagDemoActionsCallbackInterface != null)
+            {
+                @ForwardWithLag.started -= m_Wrapper.m_LagDemoActionsCallbackInterface.OnForwardWithLag;
+                @ForwardWithLag.performed -= m_Wrapper.m_LagDemoActionsCallbackInterface.OnForwardWithLag;
+                @ForwardWithLag.canceled -= m_Wrapper.m_LagDemoActionsCallbackInterface.OnForwardWithLag;
+            }
+            m_Wrapper.m_LagDemoActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @ForwardWithLag.started += instance.OnForwardWithLag;
+                @ForwardWithLag.performed += instance.OnForwardWithLag;
+                @ForwardWithLag.canceled += instance.OnForwardWithLag;
+            }
+        }
+    }
+    public LagDemoActions @LagDemo => new LagDemoActions(this);
     public interface IViewTransitionsActions
     {
         void OnNextView(InputAction.CallbackContext context);
         void OnPreviousView(InputAction.CallbackContext context);
+    }
+    public interface ILagDemoActions
+    {
+        void OnForwardWithLag(InputAction.CallbackContext context);
     }
 }

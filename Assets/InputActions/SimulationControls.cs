@@ -41,20 +41,25 @@ public class @SimulationControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""d8283ab7-1e7b-4b2e-ad51-00b11fa2a86a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""b54f2845-897c-4565-8a00-d5bcebb3d6de"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""91fc1025-0966-4b8c-bda4-9128b427033e"",
-                    ""path"": ""<HID::Bensussen Deutsch & Associates,Inc.(BDA) Core (Plus) Wired Controller>/hat"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": ""WASD"",
                     ""id"": ""adf26a9e-8388-4ce3-9325-c3eb4ffed6bd"",
@@ -103,6 +108,61 @@ public class @SimulationControls : IInputActionCollection, IDisposable
                     ""name"": ""right"",
                     ""id"": ""2957590a-c014-411c-96ac-3032302b389e"",
                     ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""XYBA"",
+                    ""id"": ""203cd909-51d7-4def-827c-65deb0985169"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""b2037aea-4231-43ed-8f7e-9709c778f14f"",
+                    ""path"": ""<HID::Bensussen Deutsch & Associates,Inc.(BDA) Core (Plus) Wired Controller>/button4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""dfbe6a84-e776-4fbf-8d66-f7a521e98f8d"",
+                    ""path"": ""<HID::Bensussen Deutsch & Associates,Inc.(BDA) Core (Plus) Wired Controller>/button2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""1ba15617-3f28-4cc2-8fb9-4801793a28f1"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""9623b921-89eb-4a16-b3b7-05bea5220b37"",
+                    ""path"": ""<HID::Bensussen Deutsch & Associates,Inc.(BDA) Core (Plus) Wired Controller>/button3"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -197,6 +257,50 @@ public class @SimulationControls : IInputActionCollection, IDisposable
                     ""action"": ""ResetPosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b42a700c-8a6d-4757-9d5e-5a4561232f17"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a8359ba7-911f-4ce9-b5f7-80c38b4f1047"",
+                    ""path"": ""<HID::Bensussen Deutsch & Associates,Inc.(BDA) Core (Plus) Wired Controller>/hat/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5cbe0be2-0423-4762-9c57-75b032e2083d"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""84031d08-d10a-4493-995a-43f5c302430c"",
+                    ""path"": ""<HID::Bensussen Deutsch & Associates,Inc.(BDA) Core (Plus) Wired Controller>/hat/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -276,6 +380,8 @@ public class @SimulationControls : IInputActionCollection, IDisposable
         m_CameraMovementAndRotation_Movement = m_CameraMovementAndRotation.FindAction("Movement", throwIfNotFound: true);
         m_CameraMovementAndRotation_Rotation = m_CameraMovementAndRotation.FindAction("Rotation", throwIfNotFound: true);
         m_CameraMovementAndRotation_ResetPosition = m_CameraMovementAndRotation.FindAction("ResetPosition", throwIfNotFound: true);
+        m_CameraMovementAndRotation_Up = m_CameraMovementAndRotation.FindAction("Up", throwIfNotFound: true);
+        m_CameraMovementAndRotation_Down = m_CameraMovementAndRotation.FindAction("Down", throwIfNotFound: true);
         // WaypointSetting
         m_WaypointSetting = asset.FindActionMap("WaypointSetting", throwIfNotFound: true);
         m_WaypointSetting_SetWaypoint = m_WaypointSetting.FindAction("SetWaypoint", throwIfNotFound: true);
@@ -332,6 +438,8 @@ public class @SimulationControls : IInputActionCollection, IDisposable
     private readonly InputAction m_CameraMovementAndRotation_Movement;
     private readonly InputAction m_CameraMovementAndRotation_Rotation;
     private readonly InputAction m_CameraMovementAndRotation_ResetPosition;
+    private readonly InputAction m_CameraMovementAndRotation_Up;
+    private readonly InputAction m_CameraMovementAndRotation_Down;
     public struct CameraMovementAndRotationActions
     {
         private @SimulationControls m_Wrapper;
@@ -339,6 +447,8 @@ public class @SimulationControls : IInputActionCollection, IDisposable
         public InputAction @Movement => m_Wrapper.m_CameraMovementAndRotation_Movement;
         public InputAction @Rotation => m_Wrapper.m_CameraMovementAndRotation_Rotation;
         public InputAction @ResetPosition => m_Wrapper.m_CameraMovementAndRotation_ResetPosition;
+        public InputAction @Up => m_Wrapper.m_CameraMovementAndRotation_Up;
+        public InputAction @Down => m_Wrapper.m_CameraMovementAndRotation_Down;
         public InputActionMap Get() { return m_Wrapper.m_CameraMovementAndRotation; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -357,6 +467,12 @@ public class @SimulationControls : IInputActionCollection, IDisposable
                 @ResetPosition.started -= m_Wrapper.m_CameraMovementAndRotationActionsCallbackInterface.OnResetPosition;
                 @ResetPosition.performed -= m_Wrapper.m_CameraMovementAndRotationActionsCallbackInterface.OnResetPosition;
                 @ResetPosition.canceled -= m_Wrapper.m_CameraMovementAndRotationActionsCallbackInterface.OnResetPosition;
+                @Up.started -= m_Wrapper.m_CameraMovementAndRotationActionsCallbackInterface.OnUp;
+                @Up.performed -= m_Wrapper.m_CameraMovementAndRotationActionsCallbackInterface.OnUp;
+                @Up.canceled -= m_Wrapper.m_CameraMovementAndRotationActionsCallbackInterface.OnUp;
+                @Down.started -= m_Wrapper.m_CameraMovementAndRotationActionsCallbackInterface.OnDown;
+                @Down.performed -= m_Wrapper.m_CameraMovementAndRotationActionsCallbackInterface.OnDown;
+                @Down.canceled -= m_Wrapper.m_CameraMovementAndRotationActionsCallbackInterface.OnDown;
             }
             m_Wrapper.m_CameraMovementAndRotationActionsCallbackInterface = instance;
             if (instance != null)
@@ -370,6 +486,12 @@ public class @SimulationControls : IInputActionCollection, IDisposable
                 @ResetPosition.started += instance.OnResetPosition;
                 @ResetPosition.performed += instance.OnResetPosition;
                 @ResetPosition.canceled += instance.OnResetPosition;
+                @Up.started += instance.OnUp;
+                @Up.performed += instance.OnUp;
+                @Up.canceled += instance.OnUp;
+                @Down.started += instance.OnDown;
+                @Down.performed += instance.OnDown;
+                @Down.canceled += instance.OnDown;
             }
         }
     }
@@ -420,6 +542,8 @@ public class @SimulationControls : IInputActionCollection, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnRotation(InputAction.CallbackContext context);
         void OnResetPosition(InputAction.CallbackContext context);
+        void OnUp(InputAction.CallbackContext context);
+        void OnDown(InputAction.CallbackContext context);
     }
     public interface IWaypointSettingActions
     {
