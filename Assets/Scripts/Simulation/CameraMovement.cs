@@ -1,16 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraMovement : MonoSingleton<CameraMovement>
 {
+    #region Input
+    private SimulationControls controls;
+
+    private void Awake()
+    {
+        controls = new SimulationControls();
+
+        controls.CameraMovementAndRotation.ResetPosition.performed += ctx => ResetPosition();
+
+        controls.CameraMovementAndRotation.Movement.performed += ctx => MovementVector = ctx.ReadValue<Vector2>();
+        controls.CameraMovementAndRotation.Movement.canceled += ctx => MovementVector = Vector3.zero;
+
+        controls.CameraMovementAndRotation.Rotation.performed += ctx => RotationVector = ctx.ReadValue<Vector2>();
+        controls.CameraMovementAndRotation.Rotation.canceled += ctx => RotationVector = Vector3.zero;
+    }
+
+    private void OnEnable()
+    {
+        controls.CameraMovementAndRotation.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.CameraMovementAndRotation.Disable();
+    }
+    #endregion
+
     #region Attributes
     [SerializeField] private Transform ResetTransform;
-    [SerializeField] private float MaxVelocity = 50f;
+    //[SerializeField] private float MaxVelocity = 20f;
     [SerializeField] private float NormalVelocity = 20f;
-    [SerializeField] private float TurnAround = 7f;
+    [SerializeField] private float TurnAround = 3f;
 
     private float Velocity;
+    private Vector2 MovementVector;
+    private Vector2 RotationVector;
 
     #endregion
 
@@ -22,17 +52,16 @@ public class CameraMovement : MonoSingleton<CameraMovement>
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        ChangeVelocity();
+        //ChangeVelocity();
         Movement();
         Rotation();
-        ResetPosition();
     }
     #endregion
 
     #region Movement Methods
-    private void ChangeVelocity()
+    /*private void ChangeVelocity()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -42,24 +71,24 @@ public class CameraMovement : MonoSingleton<CameraMovement>
         {
             Velocity = NormalVelocity;
         }
-    }
+    }*/
 
     private void Movement()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (MovementVector.y > 0.5f)
         {
             this.gameObject.transform.Translate(Vector3.forward * Velocity * Time.deltaTime);
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (MovementVector.y < -0.5f)
         {
             this.gameObject.transform.Translate(Vector3.back * Velocity * Time.deltaTime);
         }
 
-        if (Input.GetKey(KeyCode.A))
+        if (MovementVector.x < -0.5f)
         {
             this.gameObject.transform.Translate(Vector3.left * Velocity * Time.deltaTime);
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (MovementVector.x > 0.5f)
         {
             this.gameObject.transform.Translate(Vector3.right * Velocity * Time.deltaTime);
         }
@@ -67,17 +96,16 @@ public class CameraMovement : MonoSingleton<CameraMovement>
 
     private void Rotation()
     {
-        if (Input.GetMouseButton(1))
-        {
-            transform.eulerAngles += TurnAround * new Vector3(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0);
-        }
+        // transform.eulerAngles += TurnAround * new Vector3(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0); // Rotation with Mouse Position
+        transform.eulerAngles += TurnAround * new Vector3(-RotationVector.y, RotationVector.x, 0);
     }
 
     private void ResetPosition()
     {
-        if (Input.GetKeyDown(KeyCode.R) && ResetTransform != null)
+        if (ResetTransform != null)
         {
             transform.SetPositionAndRotation(ResetTransform.position, Quaternion.identity);
+            Debug.Log("R");
         }
     }
     #endregion

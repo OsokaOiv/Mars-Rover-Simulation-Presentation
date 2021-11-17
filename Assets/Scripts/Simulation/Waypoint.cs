@@ -2,9 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class Waypoint : MonoSingleton<Waypoint>
 {
+    #region Input
+    private SimulationControls controls;
+
+    public override void Init()
+    {
+        controls = new SimulationControls();
+
+        controls.WaypointSetting.SetWaypoint.performed += ctx => SetWaypoint();
+        controls.WaypointSetting.RemoveWaypoint.performed += ctx => RemoveWaypoint();
+    }
+
+    private void OnEnable()
+    {
+        controls.WaypointSetting.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.WaypointSetting.Disable();
+    }
+    #endregion
+
     #region Attributes
     [SerializeField] private RectTransform WaypointTransform;
     [SerializeField] private Transform Rover;
@@ -16,14 +39,10 @@ public class Waypoint : MonoSingleton<Waypoint>
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.T) && Waypoints.Count > 0)
-        {
-            Waypoints.Dequeue();
-        }
-        else if (Input.GetMouseButtonDown(0))
+        /*if (Input.GetMouseButtonDown(0))
         {
             GetMouse3DPosition();
-        }
+        }*/
 
         WaypointTransform.gameObject.SetActive(Waypoints.Count > 0);
 
@@ -39,6 +58,23 @@ public class Waypoint : MonoSingleton<Waypoint>
         if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, GroundLayer))
         {
             Waypoints.Enqueue(raycastHit.point);
+        }
+    }
+
+    private void SetWaypoint()
+    {
+        Ray ray = new Ray(transform.position, transform.forward);
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, GroundLayer))
+        {
+            Waypoints.Enqueue(raycastHit.point);
+        }
+    }
+
+    private void RemoveWaypoint()
+    {
+        if (Waypoints.Count > 0)
+        {
+            Waypoints.Dequeue();
         }
     }
 

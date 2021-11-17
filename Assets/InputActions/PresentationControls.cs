@@ -25,17 +25,58 @@ public class @PresentationControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""PreviousView"",
+                    ""type"": ""Button"",
+                    ""id"": ""af9f9297-9161-47eb-992d-658781c48a0d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""b551af09-4a9f-4315-93ff-964e8402240d"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<HID::Bensussen Deutsch & Associates,Inc.(BDA) Core (Plus) Wired Controller>/button3"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""NextView"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""71b320bc-6b55-41f9-af83-da0423999704"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextView"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e6d2d4e7-eb37-46d7-9345-a9c54ec1870a"",
+                    ""path"": ""<HID::Bensussen Deutsch & Associates,Inc.(BDA) Core (Plus) Wired Controller>/button2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PreviousView"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4e99397b-5eba-4219-a9d8-40a4b2abe05f"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PreviousView"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -47,6 +88,7 @@ public class @PresentationControls : IInputActionCollection, IDisposable
         // ViewTransitions
         m_ViewTransitions = asset.FindActionMap("ViewTransitions", throwIfNotFound: true);
         m_ViewTransitions_NextView = m_ViewTransitions.FindAction("NextView", throwIfNotFound: true);
+        m_ViewTransitions_PreviousView = m_ViewTransitions.FindAction("PreviousView", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -97,11 +139,13 @@ public class @PresentationControls : IInputActionCollection, IDisposable
     private readonly InputActionMap m_ViewTransitions;
     private IViewTransitionsActions m_ViewTransitionsActionsCallbackInterface;
     private readonly InputAction m_ViewTransitions_NextView;
+    private readonly InputAction m_ViewTransitions_PreviousView;
     public struct ViewTransitionsActions
     {
         private @PresentationControls m_Wrapper;
         public ViewTransitionsActions(@PresentationControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @NextView => m_Wrapper.m_ViewTransitions_NextView;
+        public InputAction @PreviousView => m_Wrapper.m_ViewTransitions_PreviousView;
         public InputActionMap Get() { return m_Wrapper.m_ViewTransitions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -114,6 +158,9 @@ public class @PresentationControls : IInputActionCollection, IDisposable
                 @NextView.started -= m_Wrapper.m_ViewTransitionsActionsCallbackInterface.OnNextView;
                 @NextView.performed -= m_Wrapper.m_ViewTransitionsActionsCallbackInterface.OnNextView;
                 @NextView.canceled -= m_Wrapper.m_ViewTransitionsActionsCallbackInterface.OnNextView;
+                @PreviousView.started -= m_Wrapper.m_ViewTransitionsActionsCallbackInterface.OnPreviousView;
+                @PreviousView.performed -= m_Wrapper.m_ViewTransitionsActionsCallbackInterface.OnPreviousView;
+                @PreviousView.canceled -= m_Wrapper.m_ViewTransitionsActionsCallbackInterface.OnPreviousView;
             }
             m_Wrapper.m_ViewTransitionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -121,6 +168,9 @@ public class @PresentationControls : IInputActionCollection, IDisposable
                 @NextView.started += instance.OnNextView;
                 @NextView.performed += instance.OnNextView;
                 @NextView.canceled += instance.OnNextView;
+                @PreviousView.started += instance.OnPreviousView;
+                @PreviousView.performed += instance.OnPreviousView;
+                @PreviousView.canceled += instance.OnPreviousView;
             }
         }
     }
@@ -128,5 +178,6 @@ public class @PresentationControls : IInputActionCollection, IDisposable
     public interface IViewTransitionsActions
     {
         void OnNextView(InputAction.CallbackContext context);
+        void OnPreviousView(InputAction.CallbackContext context);
     }
 }
