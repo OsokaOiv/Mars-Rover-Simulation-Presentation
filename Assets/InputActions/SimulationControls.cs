@@ -172,6 +172,17 @@ public class @SimulationControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""34b39e8c-d966-4aaf-b70e-03e37f0a132d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""38dc6fe2-cbca-46d0-a9fc-baff24765851"",
                     ""path"": ""<Joystick>/stick"",
                     ""interactions"": """",

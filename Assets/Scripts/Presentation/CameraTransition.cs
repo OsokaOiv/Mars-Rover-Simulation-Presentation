@@ -30,34 +30,42 @@ public class CameraTransition : MonoBehaviour
     [SerializeField] private Transform[] views;
     [SerializeField] private float transitionSpeed = 7.5f;
     private Transform currentView;
-    public int currentViewIndex = 0;
+    private int currentViewIndex = 0;
+    private float lerpBorder = 0.01f;
 
     private void Start()
     {
-        currentView = views.Length != 0 ? views[0] : transform;
+        currentView = views.Length != 0 ? views[currentViewIndex] : transform;
     }
 
     // Update is called once per frame
     private void LateUpdate()
     {
-        // Lerp position https://youtu.be/EhNzQyGDnHk
-        transform.position = Vector3.Lerp(transform.position, currentView.position, Time.deltaTime * transitionSpeed);
+        if (currentView.position.x < transform.position.x - lerpBorder || currentView.position.x > transform.position.x + lerpBorder || 
+            currentView.position.y < transform.position.y - lerpBorder || currentView.position.y > transform.position.y + lerpBorder || 
+            currentView.position.z < transform.position.z - lerpBorder || currentView.position.x > transform.position.x + lerpBorder)
+        {
+            // Lerp position https://youtu.be/EhNzQyGDnHk
+            transform.position = Vector3.Lerp(transform.position, currentView.position, Time.deltaTime * transitionSpeed);
 
-        Vector3 currentAngle = new Vector3(
-            Mathf.LerpAngle(transform.rotation.eulerAngles.x, currentView.transform.rotation.eulerAngles.x, Time.deltaTime * transitionSpeed),
-            Mathf.LerpAngle(transform.rotation.eulerAngles.y, currentView.transform.rotation.eulerAngles.y, Time.deltaTime * transitionSpeed),
-            Mathf.LerpAngle(transform.rotation.eulerAngles.z, currentView.transform.rotation.eulerAngles.z, Time.deltaTime * transitionSpeed)
-            );
+            Vector3 currentAngle = new Vector3(
+                Mathf.LerpAngle(transform.rotation.eulerAngles.x, currentView.transform.rotation.eulerAngles.x, Time.deltaTime * transitionSpeed),
+                Mathf.LerpAngle(transform.rotation.eulerAngles.y, currentView.transform.rotation.eulerAngles.y, Time.deltaTime * transitionSpeed),
+                Mathf.LerpAngle(transform.rotation.eulerAngles.z, currentView.transform.rotation.eulerAngles.z, Time.deltaTime * transitionSpeed)
+                );
 
-        transform.eulerAngles = currentAngle;
+            transform.eulerAngles = currentAngle;
+        }
     }
 
     private void NextView()
     {
         if (currentViewIndex < views.Length - 1)
         {
+            currentView.gameObject.SetActive(false);
             currentViewIndex++;
             currentView = views[currentViewIndex];
+            currentView.gameObject.SetActive(true);
         }
     }
 
@@ -65,8 +73,10 @@ public class CameraTransition : MonoBehaviour
     {
         if (currentViewIndex > 0)
         {
+            currentView.gameObject.SetActive(false);
             currentViewIndex--;
             currentView = views[currentViewIndex];
+            currentView.gameObject.SetActive(true);
         }
     }
 }

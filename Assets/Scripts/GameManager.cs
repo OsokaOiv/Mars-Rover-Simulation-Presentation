@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
 
         controls.General.ExitApplication.performed += ctx => ExitApplication();
         controls.General.ReloadActiveScene.performed += ctx => ReloadActiveScene();
+        controls.General.NextScene.performed += ctx => NextScene();
+        controls.General.PreviousScene.performed += ctx => PreviousScene();
     }
 
     private void OnEnable()
@@ -37,5 +39,17 @@ public class GameManager : MonoBehaviour
     private void ReloadActiveScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void NextScene()
+    {
+        int index = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadScene(index > 2 ? 2 : index);
+    }
+
+    private void PreviousScene()
+    {
+        int index = SceneManager.GetActiveScene().buildIndex - 1;
+        SceneManager.LoadScene(index < 0 ? 0 : index);
     }
 }
