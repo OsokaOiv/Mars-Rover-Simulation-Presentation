@@ -36,6 +36,17 @@ public class Waypoint : MonoSingleton<Waypoint>
     public Queue<Vector3> Waypoints = new Queue<Vector3>();
     #endregion
 
+    private void Start()
+    {
+        //Waypoints.Enqueue(new Vector3(-111.5f, 33.1f, 135.6f));
+        Waypoints.Enqueue(new Vector3(-107f, 32.3f, 155.3f));
+        Waypoints.Enqueue(new Vector3(-118.2f, 31.8f, 170.6f));
+        Waypoints.Enqueue(new Vector3(-93.3f, 34.8f, 147f));
+        Waypoints.Enqueue(new Vector3(-110.8f, 32.1f, 153.3f));
+        //Waypoints.Enqueue(new Vector3(-111.5f, 33.1f, 135.6f));
+        Waypoints.Enqueue(new Vector3(-94.9f, 37.2f, 128.3f));
+    }
+
     // Update is called once per frame
     void Update()
     {

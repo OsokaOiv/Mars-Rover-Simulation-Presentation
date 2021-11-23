@@ -33,6 +33,22 @@ public class @ApplicationControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""NextScene"",
+                    ""type"": ""Button"",
+                    ""id"": ""29d15de2-d132-4b54-97ca-b0b1fa7acc84"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""PreviousScene"",
+                    ""type"": ""Button"",
+                    ""id"": ""7d223987-4980-43a2-a28c-76afa6a5f7c2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -68,6 +84,50 @@ public class @ApplicationControls : IInputActionCollection, IDisposable
                     ""action"": ""ReloadActiveScene"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""92e9dcbc-4955-4954-92e6-906462006c96"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextScene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1453c3da-19ee-442a-a339-898561080d1e"",
+                    ""path"": ""<HID::Bensussen Deutsch & Associates,Inc.(BDA) Core (Plus) Wired Controller>/button10"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextScene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""54a877e1-8f97-413a-ada5-e34213f3a6d2"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PreviousScene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""869e1f8c-c222-4c3e-b2e4-da280e8a8183"",
+                    ""path"": ""<HID::Bensussen Deutsch & Associates,Inc.(BDA) Core (Plus) Wired Controller>/button9"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PreviousScene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -78,6 +138,8 @@ public class @ApplicationControls : IInputActionCollection, IDisposable
         m_General = asset.FindActionMap("General", throwIfNotFound: true);
         m_General_ExitApplication = m_General.FindAction("ExitApplication", throwIfNotFound: true);
         m_General_ReloadActiveScene = m_General.FindAction("ReloadActiveScene", throwIfNotFound: true);
+        m_General_NextScene = m_General.FindAction("NextScene", throwIfNotFound: true);
+        m_General_PreviousScene = m_General.FindAction("PreviousScene", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -129,12 +191,16 @@ public class @ApplicationControls : IInputActionCollection, IDisposable
     private IGeneralActions m_GeneralActionsCallbackInterface;
     private readonly InputAction m_General_ExitApplication;
     private readonly InputAction m_General_ReloadActiveScene;
+    private readonly InputAction m_General_NextScene;
+    private readonly InputAction m_General_PreviousScene;
     public struct GeneralActions
     {
         private @ApplicationControls m_Wrapper;
         public GeneralActions(@ApplicationControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @ExitApplication => m_Wrapper.m_General_ExitApplication;
         public InputAction @ReloadActiveScene => m_Wrapper.m_General_ReloadActiveScene;
+        public InputAction @NextScene => m_Wrapper.m_General_NextScene;
+        public InputAction @PreviousScene => m_Wrapper.m_General_PreviousScene;
         public InputActionMap Get() { return m_Wrapper.m_General; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -150,6 +216,12 @@ public class @ApplicationControls : IInputActionCollection, IDisposable
                 @ReloadActiveScene.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnReloadActiveScene;
                 @ReloadActiveScene.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnReloadActiveScene;
                 @ReloadActiveScene.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnReloadActiveScene;
+                @NextScene.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnNextScene;
+                @NextScene.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnNextScene;
+                @NextScene.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnNextScene;
+                @PreviousScene.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnPreviousScene;
+                @PreviousScene.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnPreviousScene;
+                @PreviousScene.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnPreviousScene;
             }
             m_Wrapper.m_GeneralActionsCallbackInterface = instance;
             if (instance != null)
@@ -160,6 +232,12 @@ public class @ApplicationControls : IInputActionCollection, IDisposable
                 @ReloadActiveScene.started += instance.OnReloadActiveScene;
                 @ReloadActiveScene.performed += instance.OnReloadActiveScene;
                 @ReloadActiveScene.canceled += instance.OnReloadActiveScene;
+                @NextScene.started += instance.OnNextScene;
+                @NextScene.performed += instance.OnNextScene;
+                @NextScene.canceled += instance.OnNextScene;
+                @PreviousScene.started += instance.OnPreviousScene;
+                @PreviousScene.performed += instance.OnPreviousScene;
+                @PreviousScene.canceled += instance.OnPreviousScene;
             }
         }
     }
@@ -168,5 +246,7 @@ public class @ApplicationControls : IInputActionCollection, IDisposable
     {
         void OnExitApplication(InputAction.CallbackContext context);
         void OnReloadActiveScene(InputAction.CallbackContext context);
+        void OnNextScene(InputAction.CallbackContext context);
+        void OnPreviousScene(InputAction.CallbackContext context);
     }
 }
