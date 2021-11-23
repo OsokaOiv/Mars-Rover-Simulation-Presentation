@@ -30,7 +30,7 @@ public class CameraTransition : MonoBehaviour
     [SerializeField] private Transform[] views;
     [SerializeField] private float transitionSpeed = 7.5f;
     private Transform currentView;
-    private int currentViewIndex = 0;
+    public int currentViewIndex = 0;
     private float lerpBorder = 0.01f;
 
     private void Start()

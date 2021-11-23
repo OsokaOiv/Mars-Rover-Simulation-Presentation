@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
     private void NextScene()
     {
         int index = SceneManager.GetActiveScene().buildIndex + 1;
-        SceneManager.LoadScene(index > 2 ? 2 : index);
+        SceneManager.LoadScene(index > 1 ? 1 : index);
     }
 
     private void PreviousScene()
